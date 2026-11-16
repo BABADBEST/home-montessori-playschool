@@ -1,12 +1,12 @@
 (() => {
   const DEFAULT_CONFIG = {
-    configVersion: 3,
+    configVersion: 4,
     businessName: 'Home Montessori Play-School',
     ownerEmail: 'homemontessorischool.missleah@gmail.com',
     emailConfigured: true,
     phone: '415-290-4736',
     openingsNow: true,
-    openingsBanner: 'Openings Now — Enrolling Infants, Toddlers & Preschoolers (Ages 4 Mos – 5 Yrs)',
+    openingsBanner: 'Openings Now — Enrolling Infants, Toddlers & Preschoolers (Ages 4 Mos – 4 Yrs)',
     tuitionFullTime: 2650,
     tuitionPartTime: 2000,
   };

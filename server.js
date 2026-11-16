@@ -47,7 +47,7 @@ async function ensureDataFiles() {
   for (const [key, filePath] of Object.entries(FILES)) {
     if (!fsSync.existsSync(filePath)) {
       const initial = key === 'config' ? {
-        configVersion: 3,
+        configVersion: 4,
         businessName: 'Home Montessori Play-School',
         directorName: 'Miss Leah',
         ownerEmail: 'homemontessorischool.missleah@gmail.com',
@@ -60,8 +60,10 @@ async function ensureDataFiles() {
         licensedCapacity: 8,
         typicalGroupSize: '4–6 children',
         hours: 'Monday – Friday · 8:30 AM – 4:30 PM',
+        tourHours: 'Monday – Friday · 4:30 PM – 5:00 PM Only',
+        agesServed: '4 Months – 4 Years',
         openingsNow: true,
-        openingsBanner: 'Openings Now — Enrolling Infants, Toddlers & Preschoolers (Ages 4 Mos – 5 Yrs)',
+        openingsBanner: 'Openings Now — Enrolling Infants, Toddlers & Preschoolers (Ages 4 Mos – 4 Yrs)',
         tuitionFullTime: 2650,
         tuitionPartTime: 2000,
       } : [];
