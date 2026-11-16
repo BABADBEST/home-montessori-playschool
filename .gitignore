@@ -1,0 +1,5 @@
+node_modules/
+.env
+data/parents.json
+data/inquiries.json
+data/enrollments.json

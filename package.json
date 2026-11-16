@@ -1,0 +1,13 @@
+{
+  "name": "home-montessori-playschool",
+  "version": "1.0.0",
+  "description": "Modern website, parent registration, child enrollment portal, and direct email inquiry system for Home Montessori Play-School in Burlingame, CA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "nodemailer": "^10.6.0"
+  }
+}

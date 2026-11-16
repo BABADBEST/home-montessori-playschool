@@ -1,0 +1,18 @@
+{
+  "businessName": "Home Montessori Play-School",
+  "directorName": "Miss Leah",
+  "ownerEmail": "hello@homemontessoriburlingame.com",
+  "emailConfigured": false,
+  "phone": "",
+  "neighborhood": "Oak Grove Manor",
+  "cityStateZip": "Burlingame, CA 94010",
+  "landmarks": "Near Anza Lagoon, Bay Trail & 600 Airport Blvd",
+  "licenseNumber": "414004784",
+  "licensedCapacity": 8,
+  "typicalGroupSize": "4–6 children",
+  "hours": "Monday – Friday · 8:30 AM – 4:30 PM",
+  "openingsNow": true,
+  "openingsBanner": "Openings Now — Enrolling Infants, Toddlers & Preschoolers (Ages 4 Mos – 5 Yrs)",
+  "tuitionFullTime": 2800,
+  "tuitionPartTime": 2000
+}
