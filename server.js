@@ -47,12 +47,12 @@ async function ensureDataFiles() {
   for (const [key, filePath] of Object.entries(FILES)) {
     if (!fsSync.existsSync(filePath)) {
       const initial = key === 'config' ? {
-        configVersion: 2,
+        configVersion: 3,
         businessName: 'Home Montessori Play-School',
         directorName: 'Miss Leah',
         ownerEmail: 'homemontessorischool.missleah@gmail.com',
         emailConfigured: true,
-        phone: '',
+        phone: '415-290-4736',
         neighborhood: 'Oak Grove Manor',
         cityStateZip: 'Burlingame, CA 94010',
         landmarks: 'Near Anza Lagoon, Bay Trail & 600 Airport Blvd',
