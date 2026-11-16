@@ -47,10 +47,11 @@ async function ensureDataFiles() {
   for (const [key, filePath] of Object.entries(FILES)) {
     if (!fsSync.existsSync(filePath)) {
       const initial = key === 'config' ? {
+        configVersion: 2,
         businessName: 'Home Montessori Play-School',
         directorName: 'Miss Leah',
-        ownerEmail: 'hello@homemontessoriburlingame.com',
-        emailConfigured: false,
+        ownerEmail: 'homemontessorischool.missleah@gmail.com',
+        emailConfigured: true,
         phone: '',
         neighborhood: 'Oak Grove Manor',
         cityStateZip: 'Burlingame, CA 94010',
@@ -61,7 +62,7 @@ async function ensureDataFiles() {
         hours: 'Monday – Friday · 8:30 AM – 4:30 PM',
         openingsNow: true,
         openingsBanner: 'Openings Now — Enrolling Infants, Toddlers & Preschoolers (Ages 4 Mos – 5 Yrs)',
-        tuitionFullTime: 2800,
+        tuitionFullTime: 2650,
         tuitionPartTime: 2000,
       } : [];
       await fs.writeFile(filePath, JSON.stringify(initial, null, 2), 'utf8');

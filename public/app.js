@@ -1,12 +1,13 @@
 (() => {
   const DEFAULT_CONFIG = {
+    configVersion: 2,
     businessName: 'Home Montessori Play-School',
-    ownerEmail: 'hello@homemontessoriburlingame.com',
-    emailConfigured: false,
+    ownerEmail: 'homemontessorischool.missleah@gmail.com',
+    emailConfigured: true,
     phone: '',
     openingsNow: true,
     openingsBanner: 'Openings Now — Enrolling Infants, Toddlers & Preschoolers (Ages 4 Mos – 5 Yrs)',
-    tuitionFullTime: 2800,
+    tuitionFullTime: 2650,
     tuitionPartTime: 2000,
   };
 
@@ -86,7 +87,10 @@
     const method = (options.method || 'GET').toUpperCase();
     const body = options.body ? JSON.parse(options.body) : {};
     const headers = options.headers || {};
-    const cfg = { ...DEFAULT_CONFIG, ...readLocal(STORAGE_KEYS.config, {}) };
+    const storedCfg = readLocal(STORAGE_KEYS.config, {});
+    const cfg = storedCfg.configVersion === DEFAULT_CONFIG.configVersion
+      ? { ...DEFAULT_CONFIG, ...storedCfg }
+      : { ...DEFAULT_CONFIG };
 
     if (method === 'GET' && path === '/api/config') {
       return { ok: true, config: cfg };
@@ -281,6 +285,16 @@
     if (fullEl) fullEl.textContent = formatCurrency(c.tuitionFullTime);
     if (partEl) partEl.textContent = formatCurrency(c.tuitionPartTime);
 
+    const enrSelect = $('#enrProgram');
+    if (enrSelect && enrSelect.options.length >= 2) {
+      const ftFmt = formatCurrency(c.tuitionFullTime);
+      const ptFmt = formatCurrency(c.tuitionPartTime);
+      enrSelect.options[0].value = `Full-Time Montessori (${ftFmt}/mo)`;
+      enrSelect.options[0].textContent = `Full-Time Montessori — ${ftFmt} / month (Mon–Fri, 8:30–4:30)`;
+      enrSelect.options[1].value = `Part-Time Montessori (${ptFmt}/mo)`;
+      enrSelect.options[1].textContent = `Part-Time Montessori — ${ptFmt} / month (Selected Days)`;
+    }
+
     const emailLink = $('#directEmailLink');
     if (emailLink && c.ownerEmail) {
       emailLink.textContent = c.ownerEmail;
@@ -440,6 +454,8 @@
 
         await relayViaFormSubmitIfNeeded(data.ownerEmail, data.emailConfigured, data.smtpSent, {
           _subject: `[Website Inquiry: ${payload.inquiryType}] from ${payload.parentName}`,
+          _replyto: payload.email,
+          email: payload.email,
           Reference_ID: data.inquiry.id,
           Topic: payload.inquiryType,
           Parent_Name: payload.parentName,
@@ -606,6 +622,8 @@
 
         await relayViaFormSubmitIfNeeded(data.ownerEmail, data.emailConfigured, data.smtpSent, {
           _subject: `[New Enrollment ${data.enrollment.id}] ${payload.childName} — ${payload.program}`,
+          _replyto: payload.parentEmail,
+          email: payload.parentEmail,
           Application_ID: data.enrollment.id,
           Child_Name: payload.childName,
           Date_Of_Birth: payload.childDob,
@@ -851,7 +869,7 @@
 
     $('#cfgEmail').value = data.config.ownerEmail || '';
     $('#cfgPhone').value = data.config.phone || '';
-    $('#cfgFullTuition').value = data.config.tuitionFullTime || 2800;
+    $('#cfgFullTuition').value = data.config.tuitionFullTime || 2650;
     $('#cfgPartTuition').value = data.config.tuitionPartTime || 2000;
     $('#cfgOpenings').value = String(Boolean(data.config.openingsNow));
 
